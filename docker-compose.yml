@@ -1,0 +1,12 @@
+services:
+  openvla_pycharm_interpreter:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
+      args:
+        BASE_IMAGE: ${BASE_IMAGE}
+    ports:
+      - ${JUPYTERLAB_PORT:-8888}:${JUPYTERLAB_PORT:-8888}
+      - 52051:${JUPYTERLAB_PORT:-8888} # TODO added when attempting to get pycharms notebooks to connect. Probably not needed.
+    environment:
+      JUPYTERLAB_PORT: ${JUPYTERLAB_PORT:-8888}
